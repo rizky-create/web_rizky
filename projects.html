@@ -5,10 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projects</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .filter-buttons {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .filter-buttons button {
+            margin: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        .image img {
+            display: none;
+            margin: 10px;
+        }
+        .image img.active {
+            display: inline-block;
+        }
+    </style>
 </head>
 <body>
-
-  
     <nav class="navbar">
         <ul>
             <li><a href="portofolio.html">Home</a></li>
@@ -18,15 +34,35 @@
             <li><a href="contact.html">Contact</a></li>
         </ul>
     </nav>
-    <section></section>
+
+    <section class="filter-buttons">
+        <button onclick="filterImages('all')">All</button>
+        <button onclick="filterImages('html')">HTML</button>
+        <button onclick="filterImages('css')">CSS</button>
+        <button onclick="filterImages('javascript')">JavaScript</button>
+    </section>
+
     <div class="image">
         <h1>Sertifikat Sololearn</h1>
-        <div class="html">
-            <img src="asset/html.jpg" width="30%">
-            <img src="asset/css.jpg" width="30%">
-            <img src="asset/introjs.jpg" width="30%">
-            <img src="asset/intermediatejs.jpg" width="30%">
-        </div>   
+        <img src="asset/html.jpg" class="html" width="30%" alt="HTML">
+        <img src="asset/css.jpg" class="css" width="30%" alt="CSS">
+        <img src="asset/introjs.jpg" class="javascript" width="30%" alt="JavaScript">
+        <img src="asset/intermediatejs.jpg" class="javascript" width="30%" alt="JavaScript">
     </div>
+
+    <script>
+        function filterImages(category) {
+            const images = document.querySelectorAll('.image img');
+            images.forEach(img => {
+                img.classList.remove('active');
+                if (category === 'all' || img.classList.contains(category)) {
+                    img.classList.add('active');
+                }
+            });
+        }
+
+        // Show all images by default
+        filterImages('all');
+    </script>
 </body>
 </html>
